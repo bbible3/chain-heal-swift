@@ -1,3 +1,4 @@
+import Foundation
 
 class ChainInfo {
     
@@ -33,6 +34,6 @@ class ChainInfo {
             potential = potential * (1 - powerReduction)
         }
         
-        return Int(potential)
+        return Int(round(potential))
     }
 }
