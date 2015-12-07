@@ -43,33 +43,34 @@ func parseChainInfo(args: [String]) -> ChainInfo {
  
  - returns: An array of the players parsed
  */
-func parsePlayers(args: [String]) -> [Player] {
-    
-    // If we can't get all 5 "pieces" of a player, kill it
-    guard args.count % 5 == 0 else {
-        fatalError("Incomplete player info")
-    }
+func parsePlayers() -> [Player] {
     
     // Players for appending and returning
     var players = [Player]()
     
-    // Stride through the array in incremements of 5, building a player each time
+    var lineNumber = 0
     
-    for index in 0.stride(to: args.count, by: 5) {
+    // Read in all players from std in
+    while let line = readLine() {
+        
+        lineNumber += 1
+    
+        let line = line.componentsSeparatedByString(" ")
         
         // Make sure we can get all valid parameters
         guard let
-            x = Int(args[index]),
-            y = Int(args[index + 1]),
-            currentPP = Int(args[index + 2]),
-            maxPP = Int(args[index + 3])
+            x = Int(line[0]),
+            y = Int(line[1]),
+            currentPP = Int(line[2]),
+            maxPP = Int(line[3])
+            where line.count == 5
         else {
-            fatalError("Invalid player at index: \(index)")
+            fatalError("Invalid player at line number: \(lineNumber)")
         }
         
         // Create a point, a name and player, then append it
         let position = Point(x: x, y: y)
-        let name = args[index + 4]
+        let name = line[4]
         let newPlayer = Player(maxPP: maxPP, currentPP: currentPP, position: position, name: name)
         
         players.append(newPlayer)
@@ -150,7 +151,7 @@ func dfs(player: Player, hop: Int, chainInfo: ChainInfo, totalHealing: Int) {
 let chainInfo = parseChainInfo(Process.arguments)
 
 // Parse all the players
-let players = parsePlayers(Array(Process.arguments[6..<Process.arguments.count]))
+let players = parsePlayers()
 
 for player in players {
     if player.name == "Urgosa_the_Healing_Shaman" {
