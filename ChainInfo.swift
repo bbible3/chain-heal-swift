@@ -1,3 +1,7 @@
+#if os(Linux)
+import Glibc
+#endif
+
 import Foundation
 
 class ChainInfo {
@@ -34,6 +38,6 @@ class ChainInfo {
             potential = potential * (1 - powerReduction)
         }
         
-        return Int(round(potential))
+        return Int(rint(potential))
     }
 }

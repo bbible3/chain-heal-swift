@@ -1,3 +1,7 @@
+#if os(Linux)
+import Glibc
+#endif
+
 import Foundation
 
 /**
@@ -55,7 +59,7 @@ func parsePlayers() -> [Player] {
         
         lineNumber += 1
     
-        let line = line.componentsSeparatedByString(" ")
+        let line = line.characters.split{$0 == " "}.map(String.init)
         
         // Make sure we can get all valid parameters
         guard let
@@ -175,4 +179,4 @@ for player in chainInfo.bestPath {
     print(player.name, player.bestHealing)
 }
 
-print("Total healing: \(totalHealing)")
+print("Total_Healing \(totalHealing)")
