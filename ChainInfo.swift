@@ -1,3 +1,11 @@
+//
+//  ChainInfo.swift
+//  chain-heal
+//
+//  Created by Kyle Bashour on 12/7/15.
+//  Copyright © 2015 Kyle Bashour. All rights reserved.
+//
+
 #if os(Linux)
 import Glibc
 #endif

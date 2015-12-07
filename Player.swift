@@ -1,3 +1,11 @@
+//
+//  Player.swift
+//  chain-heal
+//
+//  Created by Kyle Bashour on 12/7/15.
+//  Copyright © 2015 Kyle Bashour. All rights reserved.
+//
+
 import Foundation
 
 /// A class for holding a player with all its info
